@@ -5,7 +5,8 @@ import os
 from pydub import AudioSegment
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app, supports_credentials=True)  # Allow all requests
+
 
 # Load Whisper model
 model = whisper.load_model("small")
@@ -15,7 +16,6 @@ def transcribe():
     if "file" not in request.files:
         return jsonify({"error": "No file uploaded"}), 400
 
-    # Save uploaded audio
     audio_file = request.files["file"]
     audio_path = "temp_audio.mp3"
     audio_file.save(audio_path)
