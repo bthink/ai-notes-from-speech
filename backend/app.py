@@ -1,12 +1,14 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import whisper
 import os
 from pydub import AudioSegment
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
-# Load Whisper model (adjust model size for performance)
-model = whisper.load_model("small")  # Change to "base", "medium", etc.
+# Load Whisper model
+model = whisper.load_model("small")
 
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
@@ -24,7 +26,7 @@ def transcribe():
         audio.export(audio_path, format="mp3")
 
     # Transcribe using Whisper
-    result = model.transcribe(audio_path, language="pl")  # Force Polish transcription
+    result = model.transcribe(audio_path, language="pl")
     os.remove(audio_path)  # Cleanup temp file
 
     return jsonify({"text": result["text"]})
