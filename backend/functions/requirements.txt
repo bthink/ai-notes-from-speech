@@ -1,0 +1,14 @@
+firebase-functions==0.1.0
+functions-framework==3.*
+Flask==2.*
+flask-cors==4.*
+openai-whisper==20231117
+pydub==0.*
+torch
+torchaudio
+numpy
+google-cloud-functions
+ffmpeg
+firebase-admin
+ffmpeg-python
+

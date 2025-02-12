@@ -1,7 +1,0 @@
-flask
-flask-cors
-openai-whisper
-torch
-torchaudio
-pydub
-numpy
